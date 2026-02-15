@@ -1,0 +1,321 @@
+{
+  "name": "welcome msg on reg",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "welcome",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -544,
+        -32
+      ],
+      "id": "3e9745d1-2e58-4b0d-bfbf-c39576cb07ac",
+      "name": "Webhook",
+      "webhookId": "70d59d70-a94f-4a3c-8522-853b2a6f60db"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7f0b7b6c-a4e7-4ff8-a1e4-67a9debc2d19",
+              "name": "body.first_name",
+              "value": "={{ $json.body.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "5dd85496-8599-4137-b41e-874e7d2e56b5",
+              "name": "body.last_name",
+              "value": "={{ $json.body.last_name }}",
+              "type": "string"
+            },
+            {
+              "id": "4787687e-1213-4e49-9206-fca6998e6619",
+              "name": "body.occupation",
+              "value": "={{ $json.body.occupation }}",
+              "type": "string"
+            },
+            {
+              "id": "536d1ac0-2226-498e-b9e0-ca8983ad009d",
+              "name": "body.email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -16,
+        -16
+      ],
+      "id": "25050f10-feeb-4908-87a2-5e1e9e68518d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fromEmail": "website email(fill this)",
+        "toEmail": "={{ $('Edit Fields').item.json.body.email }}",
+        "subject": "Welcome to my website",
+        "html": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        992,
+        -16
+      ],
+      "id": "2ca04633-1a39-4049-a1ca-97d8f8d093cc",
+      "name": "Send email",
+      "webhookId": "c92700b9-d1ba-45ba-a54a-d81e310d555b",
+      "credentials": {
+        "smtp": {
+          "id": "DEwVoyDAbWss95Oa",
+          "name": "no-reply Sani"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are an assistant that generates a short, personalized data scraping use case for users in Finland.\n\nYour task:\n\nRead the user's data (first_name, last_name, occupation).\n\nCreate ONE eye-catching, friendly, and practical use case for how this user could benefit from data scraping.\n\nIf the occupation is provided (not empty, not null, not just spaces), make the use case clearly tailored to that occupation and its typical needs in Finland.\n\nIf the occupation is empty or missing, create a general but still engaging use case suitable for an Finland audience.\n\nYou MAY briefly mention how they could do it (only if it helps)\n\nKeep the suggestion very short: 2–3 short sentences that fit within 2–3 lines in a typical email client.\n\nImportant output rules:\n\nWrite ALL content in natural, friendly Finnish (Fin), suitable for Finland users.\n\nDo NOT mention any brand/product/company name.\n\nReturn ONLY a single JSON object with these exact keys:\n\n\"user_full_name\": full name in Finnish order using the given first_name and last_name as-is (e.g., \"Ali Ahmadi\").\n\n\"suggested_usecase\": a concise suggestion in 2–3 short Finnish sentences (max 2–3 lines) describing the scraping use case.\n\nDo NOT add any explanations, comments, markdown, or extra fields. Only valid JSON."
+            },
+            {
+              "content": "=User data:\n{\n  \"first_name\": \"{{ $json.body.first_name }}\",\n  \"last_name\": \"{{ $json.body.last_name }}\",\n  \"occupation\": \"{{ $json.body.occupation }}\"\n}\n\nBased on this data, generate the JSON response as specified in the system instructions.\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        192,
+        -16
+      ],
+      "id": "65abbb39-6563-45b0-9984-3a9f0d1abc3c",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "TqgDsmXtHOUlKTUu",
+          "name": "myself"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f24aacee-c507-4928-b60f-42138efcdd95",
+              "leftValue": "={{ $json.headers[\"x-real-ip\"] }}",
+              "rightValue": "<YOUR WEBSITE IP>",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -336,
+        -32
+      ],
+      "id": "19c88e26-8184-4fb8-8125-22437da1359e",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        -208
+      ],
+      "id": "ad197682-b3b1-4b95-8b39-fc6cedaa0297",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "content": "## IP Whitelist",
+        "height": 240,
+        "width": 304,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -416,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "27582f52-78c7-47cf-b711-a4b1ff554ae8",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cc8f8816-747d-47a3-ad06-f585fc4f1325",
+              "name": "user_full_name",
+              "value": "={{ $json.output[0].content[0].text.user_full_name }}",
+              "type": "string"
+            },
+            {
+              "id": "1002f9fe-b19a-4648-a329-3b918a4c7386",
+              "name": "suggested_usecase",
+              "value": "={{ $json.output[0].content[0].text.suggested_usecase }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        544,
+        -16
+      ],
+      "id": "79b45562-87ec-47e9-bc42-4a5610500416",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code node\n\nfunction escapeHtml(str = '') {\n  return String(str)\n    .replace(/&/g, '&amp;')\n    .replace(/</g, '&lt;')\n    .replace(/>/g, '&gt;')\n    .replace(/\"/g, '&quot;')\n    .replace(/'/g, '&#039;');\n}\n\nconst items = $input.all();\n\nreturn items.map(item => {\n  const userFullName = item.json.user_full_name || '';\n  const suggestedUsecase = item.json.suggested_usecase || '';\n\n  const safeName = escapeHtml(userFullName || 'دوست عزیز');\n  const safeUsecase = escapeHtml(suggestedUsecase);\n\n  const emailSubject = 'به آسان‌اسکرِیپ خوش آمدید! خوشحالیم شما را همراه خود داریم.';\n\n  const html = `<!DOCTYPE html>\n<html lang=\"fa\" dir=\"rtl\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <title>${escapeHtml(emailSubject)}</title>\n    <style>\n      body {\n        margin: 0;\n        padding: 0;\n        background-color: #ffffff;\n        color: #000000;\n        font-family: \"Tahoma\", sans-serif;\n        line-height: 1.7;\n      }\n\n      .container {\n        background-color: #f4f4f4;\n        border-radius: 12px;\n        overflow: hidden;\n      }\n\n      @media (prefers-color-scheme: dark) {\n        body {\n          background-color: #121212 !important;\n          color: #ededed !important;\n        }\n\n        .container {\n          background-color: #1a1a1a !important;\n        }\n\n        a {\n          color: #ffffff !important;\n        }\n\n        td {\n          color: #ededed !important;\n        }\n\n        td.label {\n          color: #bbbbbb !important;\n        }\n      }\n\n      @media only screen and (max-width: 600px) {\n        .container {\n          width: 100% !important;\n        }\n      }\n    </style>\n  </head>\n\n  <body dir=\"rtl\">\n    <table\n      role=\"presentation\"\n      cellspacing=\"0\"\n      cellpadding=\"0\"\n      border=\"0\"\n      align=\"center\"\n      width=\"100%\"\n    >\n      <tr>\n        <td align=\"center\" style=\"padding: 32px 16px\">\n          <table\n            class=\"container\"\n            role=\"presentation\"\n            cellspacing=\"0\"\n            cellpadding=\"0\"\n            border=\"0\"\n            width=\"600\"\n            style=\"max-width: 600px\"\n          >\n            <tr>\n              <td align=\"center\" style=\"padding: 32px 24px 16px\">\n                <img\n                  src=\"https://asanscrape.com/_nuxt/asanscrapeLogo.CYe7krmi.png\"\n                  alt=\"لوگوی سایت\"\n                  width=\"140\"\n                  style=\"display: block\"\n                />\n              </td>\n            </tr>\n\n            <tr>\n              <td align=\"center\" style=\"padding: 0 24px 8px\">\n                <h1 style=\"margin: 0; font-size: 18px; line-height: 1.8;\">\n                  <span style=\"color: #1db954; font-weight: bold;\">\n                    ${safeName} عزیز،\n                  </span><br />\n                  به آسان‌اسکرِیپ خوش آمدید! خوشحالیم شما را همراه خود داریم.\n                </h1>\n              </td>\n            </tr>\n\n            <tr>\n              <td style=\"padding: 0 24px 24px; font-size: 15px\">\n                <p style=\"margin: 16px 0 0;\">\n                  در ادامه یک سناریوی پیشنهادی برای استفاده از سرویس‌های Asan Scrape مخصوص شما آماده کرده‌ایم:\n                </p>\n\n                <p style=\"margin: 16px 0 0;\">\n                  ${safeUsecase}\n                </p>\n\n                <p style=\"margin: 24px 0 0; font-size: 14px;\">\n                  با Asan Scrape می‌توانید داده‌های شبکه‌های اجتماعی و موتورهای جست‌وجو را به‌صورت خودکار جمع‌آوری و تحلیل کنید؛\n                  چه از طریق پنل بدون نیاز به برنامه‌نویسی، چه با استفاده از API و نود n8n برای خودکارسازی فرایندها.\n                  همچنین دیتاست‌های آماده ما می‌توانند شروع سریع‌تری برای پروژه‌های شما فراهم کنند.\n                </p>\n\n                <p\n                  style=\"\n                    margin: 24px 0 0;\n                    font-size: 14px;\n                    text-align: center;\n                  \"\n                >\n                  برای شروع می‌توانید از\n                  <a href=\"https://panel.asanscrape.com/dashboard\" style=\"text-decoration: none; font-weight: bold; color: #1db954;\">\n                    پنل آسان‌اسکرِیپ\n                  </a>\n                  استفاده کنید یا مستندات توسعه‌دهندگان را در\n                  <a href=\"https://docs.asanscrape.com/\" style=\"text-decoration: none; font-weight: bold; color: #1db954;\">\n                    docs.asanscrape.com\n                  </a>\n                  بررسی کنید.\n                </p>\n\n                <p\n                  style=\"\n                    margin: 24px 0 0;\n                    font-size: 14px;\n                    text-align: center;\n                  \"\n                >\n                  تیم آسان‌اسکرِیپ — سرویس جمع‌آوری داده و اتوماسیون\n                </p>\n\n                <p\n                  style=\"\n                    margin: 32px 0 0;\n                    font-size: 13px;\n                    color: #888888;\n                    text-align: center;\n                  \"\n                >\n                  info@asanscrape.com<br />\n                  asanscrape.com &copy; 1404\n                </p>\n              </td>\n            </tr>\n          </table>\n        </td>\n      </tr>\n    </table>\n  </body>\n</html>`;\n\n  return {\n    json: {\n      ...item.json,\n      email_subject: emailSubject,\n      html,\n    },\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        752,
+        -16
+      ],
+      "id": "ee1e552e-c0a7-42e6-8ea0-91ed8b62c78b",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "2d961cda-b625-4fc4-9eb2-505b0b521482",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7f4949e52ebf510a45bb77252bbf5f71d019eaac660f6a4b3d54f8c8e9eeecb5"
+  },
+  "id": "bVrUUwCLzxSG65nr",
+  "tags": []
+}
