@@ -249,7 +249,13 @@ This is a personal portfolio project. For suggestions or issues, please contact:
 
 ## 📄 License
 
-Private and proprietary.
+This project is proprietary and confidential. **All rights reserved.**
+
+⚠️ **Unauthorized use is prohibited.** This software may not be copied, modified, distributed, or used without explicit written permission from the owner.
+
+For licensing inquiries or to request permission, please contact via [ehsanmohajer.fi/contact](https://ehsanmohajer.fi/contact).
+
+See [LICENSE](LICENSE) for full terms and conditions.
 
 ## 👤 Author
 
