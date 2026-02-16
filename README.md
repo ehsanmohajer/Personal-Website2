@@ -105,6 +105,8 @@ portfolio-vanilla/
 - ✅ Mobile hamburger menu
 - ✅ Contact form with validation
 - ✅ CV upload functionality
+- ✅ **AI Chatbot powered by Google Gemini API**
+- ✅ Smart cost-optimized gatekeeper system
 - ✅ Google Analytics integration
 - ✅ Vercel Analytics support
 - ✅ SEO optimized
@@ -135,6 +137,9 @@ RESEND_API_KEY=your_api_key_here
 CONTACT_EMAIL_TO=ehsanmohajer.fi@gmail.com
 CONTACT_EMAIL_FROM=support@ehsanmohajer.fi
 
+# Google Gemini API (Required for AI Chatbot)
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key_here
+
 # Public Variables
 NEXT_PUBLIC_SITE_URL=https://ehsanmohajer.fi
 ```
@@ -152,7 +157,32 @@ NEXT_PUBLIC_SITE_URL=https://ehsanmohajer.fi
 
 **Free Plan Limits:**
 - ✅ 100 emails per day
-- ✅ 5,000 emails per month
+
+### Setting up Google Gemini API for AI Chatbot
+
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Create or sign in with Google account
+3. Click "Get API Key" → "Create API key"
+4. Copy the API key and add to environment variables:
+   ```env
+   GOOGLE_GEMINI_API_KEY=your_api_key_here
+   ```
+5. The chatbot uses **gemini-2.0-flash** model (fast & cost-effective)
+
+**Free Tier Limits:**
+- ✅ 15 requests per minute
+- ✅ 1500 requests per day
+- ✅ No credit card required for testing
+- For production, enable billing for higher limits
+
+**Cost Optimization Features:**
+- Smart gatekeeper filters irrelevant questions (saves API calls)
+- Pre-defined responses for greetings and common queries
+- Only sends business-related questions to Gemini AI
+
+See [CHATBOT_GUIDE.md](CHATBOT_GUIDE.md) for detailed chatbot documentation.
+- ✅ 5CHATBOT_GUIDE.md](CHATBOT_GUIDE.md)** - AI Chatbot setup and customization
+- **[,000 emails per month
 - ✅ No credit card required
 - Perfect for portfolios and small projects
 
