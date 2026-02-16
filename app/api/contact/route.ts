@@ -40,7 +40,6 @@ export async function POST(request: NextRequest) {
       console.error("Resend error details:", {
         error: data.error,
         message: data.error?.message,
-        statusCode: data.error?.code,
       })
       return NextResponse.json(
         { error: `Failed to send email: ${data.error?.message || 'Unknown error'}` },
@@ -48,7 +47,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log("Email sent successfully:", data.id)
+    console.log("Email sent successfully:", data.data?.id)
 
     return NextResponse.json(
       { success: true, message: "Your message has been sent successfully!" },
