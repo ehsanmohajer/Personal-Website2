@@ -1,12 +1,18 @@
 // Knowledge base for the chatbot
-// This contains all relevant information about your services
+// This contains all relevant information about your services in English and Finnish
 
 export const knowledgeBase = {
   company: {
     name: "Sani AI Studio",
     owner: "Ehsan Mohajer",
-    mission: "To bridge the gap between complex AI technologies and practical business solutions.",
-    tone: "Friendly, enthusiastic, professional, and encouraging. Use emojis occasionally to keep it light.",
+    mission: {
+      en: "To bridge the gap between complex AI technologies and practical business solutions.",
+      fi: "Yhdistää monimutkaiset tekoälyteknologiat käytännön liiketoimintaratkaisuihin.",
+    },
+    tone: {
+      en: "Friendly, enthusiastic, professional, and encouraging. Use emojis occasionally to keep it light.",
+      fi: "Ystävällinen, innostunut, ammattimainen ja rohkaiseva. Käytä emojeja silloin tällöin pitääksesi ilmapiirin kevyenä.",
+    },
   },
   services: [
     {
