@@ -254,9 +254,9 @@ Private and proprietary.
 ## 👤 Author
 
 **Sani (Ehsan Mohajer)**
-- Portfolio: [Your Website]
+- Portfolio: https://www.ehsanmohajer.fi/
 - Email: ehsanmohajer.fi@gmail.com
-- LinkedIn: [Your LinkedIn]
+- LinkedIn: https://www.linkedin.com/in/ehsan-mohajer-k/
 
 ---
 
