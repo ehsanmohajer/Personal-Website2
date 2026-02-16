@@ -90,7 +90,7 @@ export function Header() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]" style={{ backgroundColor: "rgba(255, 255, 255, 0.15)", backdropFilter: "blur(12px)" }}>
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
@@ -118,8 +118,8 @@ export function Header() {
                     className="w-full justify-start"
                   >
                     <Sun className="mr-2 h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute ml-6 h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                    <span className="ml-2">Toggle theme</span>
+                    <Moon className="mr-2 h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                    <span>Toggle theme</span>
                   </Button>
                   <Button asChild className="mt-2 w-full">
                     <Link href="/consulting" onClick={() => setIsOpen(false)}>

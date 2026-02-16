@@ -18,7 +18,7 @@ const featuredProjects = [
     ],
     tags: ["React 19", "TypeScript", "Tailwind CSS", "Node.js", "Email Verification"],
     link: "https://saarenkebabpizza.fi/",
-    github: "#", // Add actual GitHub link when available
+    github: "https://github.com/ehsanmohajer", // Main GitHub profile
     status: "Live product",
     statusColor: "bg-green-500",
     backgroundImage: "/assets/saaren.png",
@@ -38,7 +38,7 @@ const featuredProjects = [
     ],
     tags: ["AI", "Tourism", "React", "Smart Planning", "UX Design"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ehsanmohajer", // Main GitHub profile
     status: "In progress",
     statusColor: "bg-blue-500",
   },
@@ -50,42 +50,42 @@ const projects = [
     description: "An intelligent content creation platform powered by GPT-4, helping businesses create engaging content in minutes.",
     tags: ["Next.js", "OpenAI API", "TypeScript", "Tailwind CSS"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ehsanmohajer",
   },
   {
     title: "Smart Automation Dashboard",
     description: "A comprehensive dashboard for managing business workflows and automations with AI-driven insights.",
     tags: ["React", "Node.js", "MongoDB", "AI Agents"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ehsanmohajer",
   },
   {
     title: "Student Success Platform",
     description: "Platform connecting international students with mentors, resources, and opportunities in Finland.",
     tags: ["Next.js", "PostgreSQL", "Prisma", "Vercel"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ehsanmohajer",
   },
   {
     title: "Business Analytics AI",
     description: "AI-powered analytics tool that provides actionable insights from business data in real-time.",
     tags: ["Python", "FastAPI", "React", "Machine Learning"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ehsanmohajer",
   },
   {
     title: "Hackathon Management System",
     description: "Complete solution for organizing and managing hackathons, from registration to judging.",
     tags: ["Next.js", "TypeScript", "Supabase", "Real-time"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ehsanmohajer",
   },
   {
     title: "AI Chat Assistant",
     description: "Customizable AI chat assistant for businesses, trained on company-specific knowledge bases.",
     tags: ["OpenAI", "LangChain", "Vector DB", "React"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ehsanmohajer",
   },
 ]
 
