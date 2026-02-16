@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Check } from "lucide-react"
 
-export const dynamic = "force-dynamic"
-
 const plans: Record<string, { name: string; price: string }> = {
   landing: { name: "Landing Page", price: "€1,500" },
   full: { name: "Full Website", price: "€2,500" },
