@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^1.41.0",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.1.8",

@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { BackToTop } from "@/components/layout/back-to-top"
-import { ChatAssistant } from "@/components/layout/chat-assistant"
+import { ChatAssistant } from "@/components/layout/chat-assistant-new"
 import { Analytics } from "@/lib/analytics"
 import { AnalyticsWrapper } from "@/components/analytics-wrapper"
 
