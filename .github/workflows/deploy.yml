@@ -37,7 +37,7 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://ehsanmohajer.fi
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
