@@ -1,24 +1,38 @@
 # Sani AI Studio - Portfolio
 
-> Modern portfolio website built with Next.js 14, TypeScript, Tailwind CSS, and shadcn/ui
+> Modern portfolio website built with Next.js 16, TypeScript, Tailwind CSS, and shadcn/ui
+
+**Live Site:** https://ehsanmohajer.fi
 
 ## 🚀 Quick Start
 
 ```bash
 # Install dependencies
-npm install
+npm install --legacy-peer-deps
 
 # Run development server
 npm run dev
 
 # Build for production
 npm run build
-
-# Start production server
-npm start
 ```
 
 Visit: **http://localhost:3000**
+
+## 📦 Deployment
+
+This site is deployed on **Vercel** with automatic deployments from GitHub.
+
+**To deploy updates:**
+```bash
+git add .
+git commit -m "Your changes"
+git push new main
+```
+
+Vercel will automatically build and deploy in 2-3 minutes.
+
+See [DEPLOYMENT_SUMMARY.md](DEPLOYMENT_SUMMARY.md) for complete deployment guide.
 
 ## 📁 Project Structure
 
@@ -26,13 +40,14 @@ Visit: **http://localhost:3000**
 portfolio-vanilla/
 ├── app/                      # Next.js App Router (pages)
 │   ├── page.tsx             # Home page
-│   ├── services/            # Services page
+│   ├── services/            # Services page & booking
 │   ├── consulting/          # Consulting page
 │   ├── careerpath/          # Career path page
 │   ├── projects/            # Projects page
 │   ├── ideas/               # Ideas page
 │   ├── hackathons/          # Hackathons page
 │   ├── contact/             # Contact page
+│   ├── api/                 # API routes (contact, cv-upload)
 │   ├── layout.tsx           # Root layout
 │   └── globals.css          # Global styles
 │
@@ -41,12 +56,17 @@ portfolio-vanilla/
 │   ├── layout/             # Header, Footer
 │   ├── home/               # Homepage sections
 │   ├── career/             # Career page sections
-│   ├── services/           # Services components
+│   ├── services/           # Services & invoice forms
 │   ├── projects/           # Projects components
 │   ├── ideas/              # Ideas components
 │   ├── hackathons/         # Hackathons components
 │   ├── contact/            # Contact components
 │   └── consulting/         # Consulting components
+│
+├── docs/                    # Documentation
+│   ├── DEPLOYMENT.md       # Detailed deployment guide
+│   ├── SETUP_GUIDE.md      # Setup instructions
+│   └── MIGRATION_GUIDE.md  # HTML to Next.js notes
 │
 ├── lib/                     # Utilities
 │   ├── utils.ts            # Helper functions
@@ -55,25 +75,15 @@ portfolio-vanilla/
 ├── public/                  # Static assets
 │   └── assets/             # Images, SVGs
 │
-├── html-version/            # Original HTML site (legacy)
-│   ├── index.html
-│   ├── *.html              # All HTML pages
-│   ├── styles.css
-│   ├── script.js
-│   └── assets/
+├── html-version/            # Original HTML site (archived)
 │
-├── package.json             # Dependencies (run npm here!)
+├── .npmrc                   # npm configuration
+├── .env.local              # Environment variables (not in git)
+├── .env.example            # Environment template
+├── package.json             # Dependencies
 ├── next.config.js           # Next.js configuration
 ├── tailwind.config.ts       # Tailwind CSS config
-├── tsconfig.json            # TypeScript config
-├── .gitignore              # Git ignore rules
-├── .env.example            # Environment variables template
-│
-└── Documentation
-    ├── README.md           # This file
-    ├── SETUP_GUIDE.md      # Detailed setup instructions
-    ├── DEPLOYMENT.md       # Deployment guide
-    └── MIGRATION_GUIDE.md  # HTML to Next.js migration notes
+└── tsconfig.json            # TypeScript config
 ```
 
 ## 🎯 Technology Stack
@@ -115,39 +125,25 @@ portfolio-vanilla/
 
 ## ⚙️ Environment Variables
 
-Create a `.env.local` file (see `.env.example`):
+**For production:** Set these in Vercel Dashboard → Settings → Environment Variables
+
+**For local development:** Create `.env.local` (see `.env.example`):
 
 ```env
 # Resend Email Service (Required for Contact Form)
-# Free tier: 100 emails per day
-# Sign up at: https://resend.com
 RESEND_API_KEY=your_api_key_here
-
-# Contact Form Email Settings
-# CONTACT_EMAIL_TO: Where emails are sent (your email)
-# CONTACT_EMAIL_FROM: Sender email (must use verified domain with Resend)
-CONTACT_EMAIL_TO=your-email@example.com
-CONTACT_EMAIL_FROM=noreply@yourdomain.com
+CONTACT_EMAIL_TO=ehsanmohajer.fi@gmail.com
+CONTACT_EMAIL_FROM=support@ehsanmohajer.fi
 
 # Public Variables
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_SITE_NAME="Sani AI Studio"
-
-# Google Analytics (optional)
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
-
-# Vercel Analytics (optional)
-NEXT_PUBLIC_VERCEL_ANALYTICS=true
+NEXT_PUBLIC_SITE_URL=https://ehsanmohajer.fi
 ```
 
 ### Setting up Resend for Contact Form
 
-1. Go to [Resend.com](https://resend.com) and create a free account
-2. **Verify your domain:**
-   - In Resend dashboard, go to "Domains"
-   - Add your domain and verify DNS records (takes 5 min - 2 hours)
-3. Get your API key from the dashboard
-4. Add to `.env.local`:
+1. Go to [Resend.com](https://resend.com) - free account (100 emails/day)
+2. Verify your domain in Resend dashboard
+3. Get API key and add to Vercel environment variables
    ```env
    RESEND_API_KEY=your_api_key_here
    CONTACT_EMAIL_FROM=noreply@yourdomain.com
@@ -161,25 +157,29 @@ NEXT_PUBLIC_VERCEL_ANALYTICS=true
 - Perfect for portfolios and small projects
 
 ## 🚀 Deployment
+## 🚀 Deployment
 
-### Deploy to Vercel (Recommended)
+This site is deployed on **Vercel** with Cloudflare DNS.
 
-1. Push to GitHub:
-   ```bash
-   git add .
-   git commit -m "Ready for deployment"
-   git push
-   ```
+**Repository:** https://github.com/ehsanmohajer/Personal-Website2
 
-2. Import to [Vercel](https://vercel.com):
-   - Click "New Project"
-   - Import your GitHub repository
-   - Vercel auto-detects Next.js
-   - Click "Deploy"
+**To deploy updates:**
+```bash
+git add .
+git commit -m "Your changes"
+git push new main
+```
 
-3. Done! Auto-deploys on every push
+Vercel automatically builds and deploys in 2-3 minutes.
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+**See [DEPLOYMENT_SUMMARY.md](DEPLOYMENT_SUMMARY.md) for complete guide.**
+
+## 📚 Documentation
+
+- **[DEPLOYMENT_SUMMARY.md](DEPLOYMENT_SUMMARY.md)** - Quick deployment guide (START HERE)
+- **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** - Detailed deployment instructions
+- **[docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md)** - Complete setup guide
+- **[docs/MIGRATION_GUIDE.md](docs/MIGRATION_GUIDE.md)** - HTML to Next.js notes
 
 ## 🎨 Customization
 
@@ -194,31 +194,12 @@ Edit `app/globals.css`:
 
 ### Add New Page
 ```bash
-# Create page directory
 mkdir app/newpage
-
-# Create page file
-cat > app/newpage/page.tsx << 'EOF'
-export default function NewPage() {
-  return <div>New Page Content</div>
-}
-EOF
+# Create page.tsx file
 ```
 
 ### Update Navigation
-Edit `components/layout/header.tsx`:
-```typescript
-const navigation = [
-  // Add your new page
-  { name: "New Page", href: "/newpage" },
-]
-```
-
-## 📚 Documentation
-
-- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Complete setup instructions
-- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Vercel deployment guide
-- **[MIGRATION_GUIDE.md](MIGRATION_GUIDE.md)** - HTML to Next.js conversion notes
+Edit `components/layout/header.tsx`
 
 ## 🗂️ Legacy HTML Version
 
