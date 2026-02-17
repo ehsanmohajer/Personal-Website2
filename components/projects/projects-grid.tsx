@@ -61,7 +61,7 @@ const projects = [
     github: "https://github.com/ehsanmohajer/StudentWeblogPage",
   },
   {
-    title: "🚀 Interactive AI Business Plan Agent",
+    title: "🚀 Interactive AI Business Plan Agent (Still Under Development)",
     description: "A bilingual (Finnish/English) web application that helps entrepreneurs and students create a structured business plan. It guides users through plan sections, generates real-time financial charts, and can use Google Gemini to draft a complete business plan and export it as a PDF.",
     tags: ["HTML5", "CSS", "JS", "Tailwind CSS", "Google Gemini API", "Chart.js", "jsPDF","Node.js", "Express.js"],
     link: "#",
