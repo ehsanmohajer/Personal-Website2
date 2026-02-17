@@ -45,13 +45,7 @@ const featuredProjects = [
 ]
 
 const projects = [
-  {
-    title: "🚀 Restaurant Website & Ordering System",
-    description: "A modern, full-featured restaurant website for Saaren Pizza & Kebab in Viitasaari, Finland. Built with React 19, TypeScript, and Tailwind CSS, it offers a seamless online ordering experience with real-time tracking, reservations, and a bilingual interface.",
-    tags: ["React", "OpenAI API", "TypeScript", "Tailwind CSS", "Firebase", "Real-time Tracking", "Email Verification", "PWA"],
-    link: "https://saarenkebabpizza.fi/",
-    github: "#",
-  },
+
   {
     title: "🚀 Sani AI Studio - Portfolio",
     description: "Modern portfolio website built with Next.js 16, TypeScript, Tailwind CSS, and shadcn/ui",
